@@ -1,0 +1,7 @@
+Setting up FireBase
+
+1. Create a new project
+2. Go to Database
+3. Go to Rules, set read & write to true
+4. Go to Data
+5. Copy URL
