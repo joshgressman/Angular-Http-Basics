@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
-import { Http, Headers } from '@angular/http'
-
+import { Http, Headers, Response } from '@angular/http'
+import 'rxjs/RX';
+import { Observable } from 'rxjs/Observable';
 @Injectable() //used when injecting a service into a service
 export class ServerService {
 
@@ -21,7 +22,20 @@ export class ServerService {
 
   //Get data from firebase DB
   getServers(){
-    return this.http.get('https://udemy-ng-http-a4fbf.firebaseio.com/data.json');
+    return this.http.get('https://udemy-ng-http-a4fbf.firebaseio.com/data.json')
+     //map transfroms data into usable data in the application
+    .map(
+      (response: Response) => {
+        const data = response.json();
+        return data;
+      }
+    )
+    .catch(
+      (error: Response) =>{
+        console.log(error);
+        return Observable.throw(error);
+      }
+    );
   }
 
 }
