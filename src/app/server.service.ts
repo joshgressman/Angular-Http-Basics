@@ -7,9 +7,16 @@ export class ServerService {
   constructor(private http: Http){} //http enables angualr to send requests
 
   //Post servers to firebase server
+  // storeServers(servers: any[]){
+  //   const headers = new Headers({'Content-Type': 'application/json'});
+  //   return this.http.post('https://udemy-ng-http-a4fbf.firebaseio.com/data.json', servers, {headers: headers});
+  // }
+
+  //using put instead of POST with Firebase over rides the data
+  //Instead of having multiple instances
   storeServers(servers: any[]){
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('https://udemy-ng-http-a4fbf.firebaseio.com/data.json', servers, {headers: headers});
+    return this.http.put('https://udemy-ng-http-a4fbf.firebaseio.com/data.json', servers, {headers: headers});
   }
 
   //Get data from firebase DB
